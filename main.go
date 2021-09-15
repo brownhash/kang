@@ -1,14 +1,26 @@
 package main
 
 import (
-	"log"
+	"fmt"
 	"os"
 
+	"github.com/brownhash/golog"
+	"github.com/brownhash/session_terraform/internal/session"
 	"github.com/mitchellh/cli"
 )
 
+const(
+	appName 	= "SessionTerraform"
+	appVersion 	= "1.0.0"
+)
+
 func main() {
-	c := cli.NewCLI("session_terraform", "1.0.0")
+	golog.Info(fmt.Sprintf("Initiating %v", appName))
+	session := session.GenerateSession()
+
+	golog.Success(fmt.Sprintf("%s initated for %s at %v", appName, session.User, session.Started))
+
+	c := cli.NewCLI(appName, appVersion)
 
 	c.Args = os.Args[1:]
 	c.Commands = map[string]cli.CommandFactory{
@@ -25,7 +37,7 @@ func main() {
 
 	exitStatus, err := c.Run()
 	if err != nil {
-		log.Println(err)
+		golog.Error(err.Error())
 	}
 
 	os.Exit(exitStatus)
