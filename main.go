@@ -6,6 +6,7 @@ import (
 
 	"github.com/brownhash/golog"
 	"github.com/brownhash/session_terraform/internal/session"
+	"github.com/brownhash/session_terraform/internal/commands/session_details"
 	"github.com/mitchellh/cli"
 )
 
@@ -24,12 +25,12 @@ func main() {
 
 	c.Args = os.Args[1:]
 	c.Commands = map[string]cli.CommandFactory{
-		"sample": func() (cli.Command, error) {
+		"session": func() (cli.Command, error) {
 
 			var command cli.MockCommand
-			command.HelpText = HelpCommand()
-			command.RunResult = RunCommand(c.Args)
-			command.SynopsisText = SynopsisCommand()
+			command.HelpText = session_details.Help()
+			command.RunResult = session_details.Run(session)
+			command.SynopsisText = session_details.Synopsis()
 			
 			return &command, nil
 		},
@@ -41,16 +42,4 @@ func main() {
 	}
 
 	os.Exit(exitStatus)
-}
-
-func RunCommand(args []string) int {
-	return 0
-}
-
-func HelpCommand() string {
-	return "Help text"
-}
-
-func SynopsisCommand() string {
-	return "Synopsis text"
 }
