@@ -14,11 +14,11 @@ import (
 	"github.com/dustin/go-humanize"
 )
 
-func DownloadFile(fileUrl, downloadPath string) {
+func DownloadFile(fileUrl, downloadPath string) error {
 	// Build fileName from fullPath
 	fileURL, err := url.Parse(fileUrl)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 
 	urlPath := fileURL.Path
@@ -27,7 +27,7 @@ func DownloadFile(fileUrl, downloadPath string) {
 
 	golog.Info(fmt.Sprintf("Downloading %s from %s", fileName, fileURL))
 
-	downloadWithProgress(path.Join(downloadPath, fileName), fileUrl)
+	return downloadWithProgress(path.Join(downloadPath, fileName), fileUrl)
 }
 
 // DownloadFile will download a url to a local file. It's efficient because it will
