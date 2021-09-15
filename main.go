@@ -8,14 +8,15 @@ import (
 )
 
 func main() {
-	c := cli.NewCLI("app", "1.0.0")
+	c := cli.NewCLI("session_terraform", "1.0.0")
+
 	c.Args = os.Args[1:]
 	c.Commands = map[string]cli.CommandFactory{
 		"sample": func() (cli.Command, error) {
 
 			var command cli.MockCommand
 			command.HelpText = HelpCommand()
-			command.RunResult = RunCommand([]string{"random argument"})
+			command.RunResult = RunCommand(c.Args)
 			command.SynopsisText = SynopsisCommand()
 			
 			return &command, nil
