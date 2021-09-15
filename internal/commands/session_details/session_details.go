@@ -2,7 +2,6 @@ package session_details
 
 import (
 	"fmt"
-
 	"github.com/brownhash/golog"
 	s "github.com/brownhash/session_terraform/internal/session"
 )
