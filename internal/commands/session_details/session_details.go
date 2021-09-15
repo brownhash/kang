@@ -16,7 +16,7 @@ func Run(session s.Session) int {
 }
 
 func Help() string {
-	return "Provides a detailed log of current session, displaying its Unique Id, the user who started it and when."
+	return "\n\tProvides a detailed log of current session, displaying its Unique Id, the user who started it and when.\n"
 }
 
 func Synopsis() string {
