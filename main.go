@@ -6,7 +6,7 @@ import (
 
 	"github.com/brownhash/golog"
 	"github.com/brownhash/session_terraform/internal/session"
-	"github.com/brownhash/session_terraform/internal/commands/session_details"
+	"github.com/brownhash/session_terraform/internal/commands"
 	"github.com/mitchellh/cli"
 )
 
@@ -21,20 +21,16 @@ func main() {
 
 	golog.Success(fmt.Sprintf("%s initated for %s at %v", appName, session.User, session.Started))
 
-	c := cli.NewCLI(appName, appVersion)
+	commandName := os.Args[1]
+	args := []string{}
 
-	c.Args = os.Args[1:]
-	c.Commands = map[string]cli.CommandFactory{
-		"session": func() (cli.Command, error) {
-
-			var command cli.MockCommand
-			command.HelpText = session_details.Help()
-			command.RunResult = session_details.Run(session)
-			command.SynopsisText = session_details.Synopsis()
-			
-			return &command, nil
-		},
+	if len(os.Args) > 2 {
+		args = os.Args[2:]
 	}
+
+	c := cli.NewCLI(appName, appVersion)
+	c.Args = os.Args[1:]
+	c.Commands = commands.CommandCatalog(session, commandName, args)
 
 	exitStatus, err := c.Run()
 	if err != nil {
