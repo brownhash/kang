@@ -1,12 +1,17 @@
 package shell
 
 import (
-    "os/exec"
 	"bufio"
+	"fmt"
 	"log"
+	"os/exec"
+
+	"github.com/brownhash/golog"
 )
 
 func Exec(command string) int {
+    golog.Debug(fmt.Sprintf("Executing: %s", command))
+    
     cmd := exec.Command("bash", "-c", command)
 	stdout, _ := cmd.StdoutPipe()
     stderr, _ := cmd.StderrPipe()
