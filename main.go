@@ -6,6 +6,7 @@ import (
 
 	"github.com/brownhash/golog"
 	"github.com/brownhash/session_terraform/internal/session"
+	"github.com/brownhash/session_terraform/internal/core"
 	"github.com/brownhash/session_terraform/internal/commands"
 	"github.com/mitchellh/cli"
 )
@@ -18,6 +19,11 @@ const(
 func main() {
 	golog.Info(fmt.Sprintf("Initiating %v", appName))
 	session := session.GenerateSession()
+	err := core.MaintainStructure()
+
+	if err != nil {
+		golog.Error(fmt.Errorf("Unable to initiate core structure. Error: %v", err))
+	}
 
 	golog.Success(fmt.Sprintf("%s initated for %s at %v", appName, session.User, session.Started))
 
