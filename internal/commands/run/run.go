@@ -4,6 +4,7 @@ import (
 	"os"
 	"fmt"
 	"path"
+	"strings"
 
 	"github.com/brownhash/golog"
 	"github.com/brownhash/session_terraform/internal/terraform"
@@ -25,7 +26,12 @@ func Run(args []string) int {
 
 	terraformCommand := args[1]
 
-	return shell.Exec(fmt.Sprintf("%s %s", cliPath, terraformCommand))
+	terraformArgs := []string{}
+	if len(args) > 1 {
+		terraformArgs = args[2:]
+	}
+
+	return shell.Exec(fmt.Sprintf("%s %s %s", cliPath, terraformCommand, strings.Join(terraformArgs, " ")))
 }
 
 func Help() string {
