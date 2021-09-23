@@ -7,6 +7,7 @@ import (
 	"github.com/brownhash/session_terraform/internal/session"
 	"github.com/brownhash/session_terraform/internal/commands/setup"
 	"github.com/brownhash/session_terraform/internal/commands/session_details"
+	"github.com/brownhash/session_terraform/internal/commands/fetch"
 )
 
 func CommandCatalog(s session.Session, commandName string, args []string) map[string]cli.CommandFactory {
@@ -31,6 +32,18 @@ func CommandCatalog(s session.Session, commandName string, args []string) map[st
 
 			if !strings.Contains(commandName, "help") {
 				command.RunResult = session_details.Run(s)
+			}
+			
+			return &command, nil
+		},
+		"fetch": func() (cli.Command, error) {
+
+			var command cli.MockCommand
+			command.HelpText = fetch.Help()
+			command.SynopsisText = fetch.Synopsis()
+
+			if !strings.Contains(commandName, "help") {
+				command.RunResult = fetch.Run(args)
 			}
 			
 			return &command, nil
