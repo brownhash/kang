@@ -32,13 +32,10 @@ func Get(version, osType, osArchitecture, downloadPath string) (string, error) {
 		return cliPath, err
 	}
 
-	downloadUrl := path.Join(
-		config.TerraformRegistryUrl,
-		version,
-		fileName,
+	err = download.DownloadFile(
+		fmt.Sprintf(config.TerraformDownloadUrl, version, fileName), 
+		downloadPath,
 	)
-
-	err = download.DownloadFile("https://"+downloadUrl, downloadPath)
 
 	if err != nil {
 		return cliPath, err
