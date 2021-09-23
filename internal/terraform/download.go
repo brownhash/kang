@@ -18,11 +18,11 @@ func Get(version, osType, osArchitecture, downloadPath string) (string, error) {
 
 	_, err := os.Stat(filePath)
 	if err == nil {
-		golog.Warn(fmt.Sprintf("terraform@%s zip already exists", version))
+		golog.Debug(fmt.Sprintf("terraform@%s zip already exists", version))
 
 		_, err = os.Stat(cliPath)
 		if err == nil {
-			golog.Warn(fmt.Sprintf("terraform@%s cli already exists", version))
+			golog.Debug(fmt.Sprintf("terraform@%s cli already exists", version))
 			return cliPath, err
 		}
 
@@ -32,12 +32,16 @@ func Get(version, osType, osArchitecture, downloadPath string) (string, error) {
 	}
 
 	downloadUrl := path.Join(
-		"https://releases.hashicorp.com/terraform", // TODO: Move to globals
+		"releases.hashicorp.com/terraform", // TODO: Move to globals
 		version,
 		fileName,
 	)
 
-	err = download.DownloadFile(downloadUrl, downloadPath)
+	err = download.DownloadFile("https://"+downloadUrl, downloadPath)
+
+	if err != nil {
+		return cliPath, err
+	}
 
 	_, err = unzip.Unzip(filePath, downloadPath)
 
