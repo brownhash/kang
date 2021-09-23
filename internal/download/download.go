@@ -11,6 +11,7 @@ import (
 
 	"github.com/brownhash/golog"
 	"github.com/dustin/go-humanize"
+	"github.com/brownhash/session_terraform/config"
 )
 
 func DownloadFile(fileUrl, downloadPath string) error {
@@ -36,7 +37,7 @@ func downloadWithProgress(filepath string, url string) error {
 
 	// Create the file, but give it a tmp file extension, this means we won't overwrite a
 	// file until it's downloaded, but we'll remove the tmp extension once downloaded.
-	out, err := os.Create(filepath + ".tmp")
+	out, err := os.Create(filepath + config.TempExtension)
 	if err != nil {
 		return err
 	}
@@ -62,7 +63,7 @@ func downloadWithProgress(filepath string, url string) error {
 	// Close the file without defer so it can happen before Rename()
 	out.Close()
 
-	if err = os.Rename(filepath+".tmp", filepath); err != nil {
+	if err = os.Rename(filepath+config.TempExtension, filepath); err != nil {
 		return err
 	}
 	return nil

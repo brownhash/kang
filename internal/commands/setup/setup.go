@@ -20,7 +20,7 @@ func Run(args []string) int {
 		return 0
 	}
 
-	err = os.Mkdir(config.SetupPath, 0755)
+	err = os.Mkdir(config.SetupPath, config.DefaultDirPermission)
 
 	if err != nil {
 		golog.Error(err)

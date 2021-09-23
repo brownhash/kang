@@ -17,9 +17,6 @@ func Run(args []string) int {
 	}
 
 	terraformVersion := args[0]
-
-	osType := "darwin" // TODO: Move to globals
-	osArch := "amd64" // TODO: Move to globals
 	downloadPath := path.Join(config.SetupPath, terraformVersion)
 
 	err := os.Mkdir(downloadPath, 0755)
@@ -28,7 +25,7 @@ func Run(args []string) int {
 		golog.Debug(err)
 	}
 
-	cliPath, err := terraform.Get(terraformVersion, osType, osArch, downloadPath)
+	cliPath, err := terraform.Get(terraformVersion, config.OsType, config.OsArchitecture, downloadPath)
 
 	if err != nil {
 		golog.Error(fmt.Sprintf("Unable to download terraform@%s. Error: %v", terraformVersion, err))
