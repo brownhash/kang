@@ -1,2 +1,2 @@
-# session_terraform
-Use endless terraform versions in different shell sessions independently.
+# Kang
+Explore the multiverse of terraform versions with your terminal.
