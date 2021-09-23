@@ -11,7 +11,7 @@ import (
 )
 
 const(
-	appName 	= "SessionTerraform"
+	appName 	= "Kang"
 	appVersion 	= "1.0.0"
 )
 
