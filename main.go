@@ -26,15 +26,21 @@ func main() {
 
 	golog.Success(fmt.Sprintf("%s initated for %s at %v", appName, session.User, session.Started))
 
-	commandName := os.Args[1]
+	commandName := "--help"
+	if len(os.Args) > 1 {
+		commandName = os.Args[1]
+	}
+	
 	args := []string{}
-
 	if len(os.Args) > 2 {
 		args = os.Args[2:]
 	}
 
 	c := cli.NewCLI(appName, appVersion)
 	c.Args = os.Args[1:]
+
+	session.Command = commandName
+	session.Arguments = args
 	c.Commands = commands.CommandCatalog(session, commandName, args)
 
 	exitStatus, err := c.Run()

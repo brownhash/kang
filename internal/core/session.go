@@ -32,5 +32,7 @@ func GenerateSession() Session {
 type Session struct {
 	Id 			string
 	Started 	time.Time
-	User		string 		
+	User		string
+	Command		string
+	Arguments 	[]string	
 }
