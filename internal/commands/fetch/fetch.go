@@ -6,7 +6,6 @@ import (
 	"path"
 
 	"github.com/brownhash/golog"
-	"github.com/brownhash/session_terraform/internal/download"
 	"github.com/brownhash/session_terraform/internal/terraform"
 )
 
@@ -28,16 +27,17 @@ func Run(args []string) int {
 	err := os.Mkdir(downloadPath, 0755)
 
 	if err != nil {
-		golog.Error(err)
-		return 1
+		golog.Warn(err)
 	}
 
-	_, err = terraform.DownloadTerraform(terraformVersion, osType, osArch, downloadPath)
+	cliPath, err := terraform.Get(terraformVersion, osType, osArch, downloadPath)
 
 	if err != nil {
 		golog.Error(fmt.Sprintf("Unable to download terraform@%s. Error: %v", terraformVersion, err))
 		return 1
 	}
+
+	golog.Debug(fmt.Sprintf("terraform@%s stored at %s", terraformVersion, cliPath))
 
 	return 0
 }
