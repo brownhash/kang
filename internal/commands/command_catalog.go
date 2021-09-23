@@ -50,8 +50,6 @@ func CommandCatalog(s session.Session, commandName string, args []string) map[st
 		},
 	}
 
-
-
 	if val, ok := catalog[commandName]; ok {
 		return map[string]cli.CommandFactory{
 			commandName: val,
