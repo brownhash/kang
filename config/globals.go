@@ -12,4 +12,3 @@ var DefaultDirPermission os.FileMode = 755
 var TempExtension string = ".tmp"
 var OsType string = runtime.GOOS
 var OsArchitecture string = runtime.GOARCH
-var LogLevel string = os.Getenv("ST_LOG_LEVEL")
