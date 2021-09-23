@@ -1,2 +1,2 @@
 # Kang
-Explore the multiverse of terraform versions with your terminal.
+Explore the multiverse of Terraform with your terminal.
