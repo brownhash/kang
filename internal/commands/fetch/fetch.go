@@ -27,7 +27,7 @@ func Run(args []string) int {
 	err := os.Mkdir(downloadPath, 0755)
 
 	if err != nil {
-		golog.Warn(err)
+		golog.Debug(err)
 	}
 
 	cliPath, err := terraform.Get(terraformVersion, osType, osArch, downloadPath)
@@ -36,7 +36,7 @@ func Run(args []string) int {
 		golog.Error(fmt.Sprintf("Unable to download terraform@%s. Error: %v", terraformVersion, err))
 		return 1
 	}
-
+	golog.Success(fmt.Sprintf("terraform@%s successfully fetched!", terraformVersion))
 	golog.Debug(fmt.Sprintf("terraform@%s stored at %s", terraformVersion, cliPath))
 
 	return 0
