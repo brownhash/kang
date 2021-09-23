@@ -24,7 +24,7 @@ func DownloadFile(fileUrl, downloadPath string) error {
 	segments := strings.Split(urlPath, "/")
 	fileName := segments[len(segments)-1]
 
-	golog.Info(fmt.Sprintf("Downloading %s from %s", fileName, fileURL))
+	golog.Debug(fmt.Sprintf("Downloading %s from %s", fileName, fileURL))
 
 	return downloadWithProgress(path.Join(downloadPath, fileName), fileUrl)
 }
