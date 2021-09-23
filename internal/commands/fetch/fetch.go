@@ -43,7 +43,7 @@ func Run(args []string) int {
 }
 
 func Help() string {
-	return "\n\tFetch a specific version of terraform by giving 0.14.7 / 0.14 / latest .\n"
+	return "\n\tFetch a specific version of terraform by giving 0.14.7.\n"
 }
 
 func Synopsis() string {
