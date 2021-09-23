@@ -1,19 +1,31 @@
 package shell
 
 import (
-    "bytes"
     "os/exec"
+	"bufio"
+	"log"
 )
 
-func Exec(command string) (error, string, string) {
-    var stdout bytes.Buffer
-    var stderr bytes.Buffer
-
+func Exec(command string) int {
     cmd := exec.Command("bash", "-c", command)
-    cmd.Stdout = &stdout
-    cmd.Stderr = &stderr
+	stdout, _ := cmd.StdoutPipe()
+    stderr, _ := cmd.StderrPipe()
 
-    err := cmd.Run()
+    cmd.Start()
 
-    return err, stdout.String(), stderr.String()
+	scannerOut := bufio.NewScanner(stdout)
+	for scannerOut.Scan() {
+        m := scannerOut.Text()
+        log.Println(m)
+    }
+
+	scannerErr := bufio.NewScanner(stderr)
+    for scannerErr.Scan() {
+        m := scannerErr.Text()
+        log.Println(m)
+    }
+
+    cmd.Wait()
+
+	return cmd.ProcessState.ExitCode()
 }

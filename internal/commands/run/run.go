@@ -25,17 +25,7 @@ func Run(args []string) int {
 
 	terraformCommand := args[1]
 
-	err, stdout, stderr := shell.Exec(fmt.Sprintf("%s %s", cliPath, terraformCommand))
-
-	if err != nil {
-		golog.Error(err)
-		return 1
-	}
-
-	golog.Info(stdout)
-	golog.Info(stderr)
-
-	return 0
+	return shell.Exec(fmt.Sprintf("%s %s", cliPath, terraformCommand))
 }
 
 func Help() string {
