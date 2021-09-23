@@ -3,10 +3,10 @@ package session_details
 import (
 	"fmt"
 	"github.com/brownhash/golog"
-	s "github.com/brownhash/session_terraform/internal/session"
+	"github.com/brownhash/session_terraform/internal/core"
 )
 
-func Run(session s.Session) int {
+func Run(session core.Session) int {
 	golog.Warn("Current session details:")
 	golog.Warn(fmt.Sprintf("ID: %s", session.Id))
 	golog.Warn(fmt.Sprintf("Started by: %s", session.User))

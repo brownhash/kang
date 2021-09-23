@@ -5,7 +5,6 @@ import (
 	"os"
 
 	"github.com/brownhash/golog"
-	"github.com/brownhash/session_terraform/internal/session"
 	"github.com/brownhash/session_terraform/internal/core"
 	"github.com/brownhash/session_terraform/internal/commands"
 	"github.com/mitchellh/cli"
@@ -18,7 +17,7 @@ const(
 
 func main() {
 	golog.Info(fmt.Sprintf("Initiating %v", appName))
-	session := session.GenerateSession()
+	session := core.GenerateSession()
 	err := core.MaintainStructure()
 
 	if err != nil {

@@ -4,12 +4,12 @@ import (
 	"strings"
 
 	"github.com/mitchellh/cli"
-	"github.com/brownhash/session_terraform/internal/session"
+	"github.com/brownhash/session_terraform/internal/core"
 	"github.com/brownhash/session_terraform/internal/commands/session_details"
 	"github.com/brownhash/session_terraform/internal/commands/fetch"
 )
 
-func CommandCatalog(s session.Session, commandName string, args []string) map[string]cli.CommandFactory {
+func CommandCatalog(s core.Session, commandName string, args []string) map[string]cli.CommandFactory {
 	catalog := map[string]cli.CommandFactory{
 		"session": func() (cli.Command, error) {
 
