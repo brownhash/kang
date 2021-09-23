@@ -7,6 +7,7 @@ import (
 
 	"github.com/brownhash/golog"
 	"github.com/brownhash/session_terraform/internal/download"
+	"github.com/brownhash/session_terraform/internal/unzip"
 )
 
 func Get(version, osType, osArchitecture, downloadPath string) (string, error) {
@@ -25,7 +26,7 @@ func Get(version, osType, osArchitecture, downloadPath string) (string, error) {
 			return cliPath, err
 		}
 
-		// TODO: extract filePath at downloadPath
+		_, err = unzip.Unzip(filePath, downloadPath)
 
 		return cliPath, err
 	}
@@ -38,7 +39,7 @@ func Get(version, osType, osArchitecture, downloadPath string) (string, error) {
 
 	err = download.DownloadFile(downloadUrl, downloadPath)
 
-	// TODO: extract filePath at downloadPath
+	_, err = unzip.Unzip(filePath, downloadPath)
 
 	return cliPath, err
 }
