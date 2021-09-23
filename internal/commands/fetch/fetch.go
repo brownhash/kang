@@ -7,12 +7,10 @@ import (
 
 	"github.com/brownhash/golog"
 	"github.com/brownhash/session_terraform/internal/terraform"
+	"github.com/brownhash/session_terraform/config"
 )
 
 func Run(args []string) int {
-	setupPath := os.Getenv("HOME") // TODO: Move to globals
-	setupPath = path.Join(setupPath, ".sessionTerraform") // TODO: Move to globals
-
 	if len(args) > 1 {
 		golog.Error(fmt.Sprintf("Unrecognised arguments %v. fetch requires exactly 1 argument", args[1:]))
 		return 1
@@ -22,7 +20,7 @@ func Run(args []string) int {
 
 	osType := "darwin" // TODO: Move to globals
 	osArch := "amd64" // TODO: Move to globals
-	downloadPath := path.Join(setupPath, terraformVersion)
+	downloadPath := path.Join(config.SetupPath, terraformVersion)
 
 	err := os.Mkdir(downloadPath, 0755)
 

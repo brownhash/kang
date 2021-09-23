@@ -8,6 +8,7 @@ import (
 	"github.com/brownhash/golog"
 	"github.com/brownhash/session_terraform/internal/download"
 	"github.com/brownhash/session_terraform/internal/unzip"
+	"github.com/brownhash/session_terraform/config"
 )
 
 func Get(version, osType, osArchitecture, downloadPath string) (string, error) {
@@ -32,7 +33,7 @@ func Get(version, osType, osArchitecture, downloadPath string) (string, error) {
 	}
 
 	downloadUrl := path.Join(
-		"releases.hashicorp.com/terraform", // TODO: Move to globals
+		config.TerraformRegistryUrl,
 		version,
 		fileName,
 	)
