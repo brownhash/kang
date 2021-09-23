@@ -43,4 +43,3 @@ func Get(version, osType, osArchitecture, downloadPath string) (string, error) {
 
 	return cliPath, err
 }
-
