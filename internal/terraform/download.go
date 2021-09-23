@@ -31,7 +31,7 @@ func Get(version, osType, osArchitecture, downloadPath string) (string, error) {
 	}
 
 	downloadUrl := path.Join(
-		"https://releases.hashicorp.com/terraform",
+		"https://releases.hashicorp.com/terraform", // TODO: Move to globals
 		version,
 		fileName,
 	)
