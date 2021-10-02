@@ -7,13 +7,18 @@ import (
 	"github.com/brownhash/kang/internal/core"
 )
 
-func Run(session core.Session) int {
-	golog.Warn("Current session details:")
-	golog.Warn(fmt.Sprintf("ID: %s", session.Id))
-	golog.Warn(fmt.Sprintf("Command Run: %s", session.Command))
-	golog.Warn(fmt.Sprintf("Arguments Given: %s", session.Arguments))
-	golog.Warn(fmt.Sprintf("Started by: %s", session.User))
-	golog.Warn(fmt.Sprintf("Started at: %s", session.Started))
+func Run(args []string) int {
+	if len(args) > 0 {
+		golog.Error(fmt.Sprintf("Unrecognised arguments %v. session accepts no arguments", args))
+		return 1
+	}
+
+	golog.Info("Fetching existing session details")
+	err := core.ReadSessions()
+
+	if err != nil {
+		return 1
+	}
 
 	return 0
 }

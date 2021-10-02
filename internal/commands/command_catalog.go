@@ -19,7 +19,7 @@ func CommandCatalog(s core.Session, commandName string, args []string) map[strin
 			command.SynopsisText = session_details.Synopsis()
 
 			if !strings.Contains(commandName, "help") {
-				command.RunResult = session_details.Run(s)
+				command.RunResult = session_details.Run(args)
 			}
 			
 			return &command, nil
