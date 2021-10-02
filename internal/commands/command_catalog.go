@@ -12,7 +12,7 @@ import (
 
 func CommandCatalog(s core.Session, commandName string, args []string) map[string]cli.CommandFactory {
 	catalog := map[string]cli.CommandFactory{
-		"session": func() (cli.Command, error) {
+		"history": func() (cli.Command, error) {
 
 			var command cli.MockCommand
 			command.HelpText = session_details.Help()

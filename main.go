@@ -24,7 +24,7 @@ func main() {
 		golog.Error(fmt.Errorf("Unable to initiate core structure. Error: %v", err))
 	}
 
-	golog.Success(fmt.Sprintf("%s initated for %s at %v", appName, session.User, session.Started))
+	golog.Success(fmt.Sprintf("%s initated for %s [ %s ]", appName, session.User, session.Id))
 
 	commandName := "--help"
 	if len(os.Args) > 1 {
