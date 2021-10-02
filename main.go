@@ -48,10 +48,10 @@ func main() {
 		golog.Error(err.Error())
 	}
 
-	err = session.Save(exitStatus)
-	if err != nil {
-		golog.Error(fmt.Errorf("Unable to save session. Error: %v", err))
-	}
+	// err = session.Save(exitStatus)
+	// if err != nil {
+	// 	golog.Error(fmt.Errorf("Unable to save session. Error: %v", err))
+	// }
 
 	os.Exit(exitStatus)
 }
