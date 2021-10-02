@@ -48,5 +48,7 @@ func main() {
 		golog.Error(err.Error())
 	}
 
+	defer session.Save(exitStatus)
+
 	os.Exit(exitStatus)
 }
