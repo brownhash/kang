@@ -1,4 +1,4 @@
-1[kang logo](./docs/images/kang_logo.png)
+![kang logo](./docs/images/kang_logo.png)
 
 # Kang
 
