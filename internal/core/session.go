@@ -2,11 +2,13 @@ package core
 
 import (
 	"fmt"
-	"time"
 	"os/user"
 	"strings"
+	"time"
 
 	"github.com/brownhash/golog"
+	"github.com/brownhash/kang/config"
+	badger "github.com/dgraph-io/badger/v3"
 	"github.com/gofrs/uuid"
 )
 
@@ -22,9 +24,9 @@ func GenerateSession() Session {
 	}
 
 	session := Session{
-		Id: fmt.Sprintf("%v", uid),
+		Id:      fmt.Sprintf("%v", uid),
 		Started: time.Now().Local(),
-		User: user.Username,
+		User:    user.Username,
 	}
 
 	return session
@@ -33,14 +35,32 @@ func GenerateSession() Session {
 func (s *Session) Save(exitStatus int) error {
 	sessionMessage := fmt.Sprintf("Started by %s, at %v to run `%s` command with `%s` arguments. Exit status [%d].", s.User, s.Started, s.Command, strings.Join(s.Arguments, " "), exitStatus)
 	golog.Debug(sessionMessage)
-	
-	return nil
+
+	db, err := badger.Open(badger.DefaultOptions(config.SetupPath))
+
+	txn := db.NewTransaction(true)
+
+	err = txn.Set([]byte(s.Id), []byte(sessionMessage))
+	if err != nil {
+		return err
+	}
+
+	if err := txn.Commit(); err != nil {
+		return err
+	}
+
+	defer func() {
+		txn.Discard()
+		db.Close()
+	}()
+
+	return err
 }
 
 type Session struct {
-	Id 			string
-	Started 	time.Time
-	User		string
-	Command		string
-	Arguments 	[]string	
+	Id        string
+	Started   time.Time
+	User      string
+	Command   string
+	Arguments []string
 }

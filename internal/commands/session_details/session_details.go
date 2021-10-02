@@ -2,8 +2,9 @@ package session_details
 
 import (
 	"fmt"
+
 	"github.com/brownhash/golog"
-	"github.com/brownhash/session_terraform/internal/core"
+	"github.com/brownhash/kang/internal/core"
 )
 
 func Run(session core.Session) int {

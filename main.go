@@ -5,8 +5,8 @@ import (
 	"os"
 
 	"github.com/brownhash/golog"
-	"github.com/brownhash/session_terraform/internal/core"
-	"github.com/brownhash/session_terraform/internal/commands"
+	"github.com/brownhash/kang/internal/commands"
+	"github.com/brownhash/kang/internal/core"
 	"github.com/mitchellh/cli"
 )
 
@@ -48,7 +48,12 @@ func main() {
 		golog.Error(err.Error())
 	}
 
-	defer session.Save(exitStatus)
+	defer func() {
+		err := session.Save(exitStatus)
+		if err != nil {
+			golog.Error(fmt.Errorf("Unable to save session. Error: %v", err))
+		}
+	}()
 
 	os.Exit(exitStatus)
 }

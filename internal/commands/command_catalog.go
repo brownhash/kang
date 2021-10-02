@@ -3,11 +3,11 @@ package commands
 import (
 	"strings"
 
+	"github.com/brownhash/kang/internal/commands/fetch"
+	"github.com/brownhash/kang/internal/commands/run"
+	"github.com/brownhash/kang/internal/commands/session_details"
+	"github.com/brownhash/kang/internal/core"
 	"github.com/mitchellh/cli"
-	"github.com/brownhash/session_terraform/internal/core"
-	"github.com/brownhash/session_terraform/internal/commands/session_details"
-	"github.com/brownhash/session_terraform/internal/commands/fetch"
-	"github.com/brownhash/session_terraform/internal/commands/run"
 )
 
 func CommandCatalog(s core.Session, commandName string, args []string) map[string]cli.CommandFactory {

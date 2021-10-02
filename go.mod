@@ -1,4 +1,4 @@
-module github.com/brownhash/session_terraform
+module github.com/brownhash/kang
 
 go 1.17
 

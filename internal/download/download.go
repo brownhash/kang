@@ -10,8 +10,8 @@ import (
 	"strings"
 
 	"github.com/brownhash/golog"
+	"github.com/brownhash/kang/config"
 	"github.com/dustin/go-humanize"
-	"github.com/brownhash/session_terraform/config"
 )
 
 func DownloadFile(fileUrl, downloadPath string) error {

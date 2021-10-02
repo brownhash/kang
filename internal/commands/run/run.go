@@ -1,15 +1,15 @@
 package run
 
 import (
-	"os"
 	"fmt"
+	"os"
 	"path"
 	"strings"
 
 	"github.com/brownhash/golog"
-	"github.com/brownhash/session_terraform/internal/terraform"
-	"github.com/brownhash/session_terraform/internal/shell"
-	"github.com/brownhash/session_terraform/config"
+	"github.com/brownhash/kang/config"
+	"github.com/brownhash/kang/internal/shell"
+	"github.com/brownhash/kang/internal/terraform"
 )
 
 func Run(args []string) int {

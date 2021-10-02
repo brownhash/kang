@@ -1,14 +1,14 @@
 package terraform
 
 import (
-	"os"
 	"fmt"
+	"os"
 	"path"
 
 	"github.com/brownhash/golog"
-	"github.com/brownhash/session_terraform/internal/download"
-	"github.com/brownhash/session_terraform/internal/unzip"
-	"github.com/brownhash/session_terraform/config"
+	"github.com/brownhash/kang/config"
+	"github.com/brownhash/kang/internal/download"
+	"github.com/brownhash/kang/internal/unzip"
 )
 
 func Get(version, osType, osArchitecture, downloadPath string) (string, error) {
