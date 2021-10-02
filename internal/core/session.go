@@ -45,7 +45,9 @@ func (s *Session) Save(exitStatus int) error {
 		return err
 	}
 
-	if err := txn.Commit(); err != nil {
+	err = txn.Commit()
+
+	if err != nil {
 		return err
 	}
 
