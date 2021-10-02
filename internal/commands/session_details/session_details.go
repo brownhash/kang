@@ -24,9 +24,9 @@ func Run(args []string) int {
 }
 
 func Help() string {
-	return "\n\tProvides a detailed log of current session, displaying its Unique Id, the user who started it and when.\n"
+	return "\n\tProvides a detailed log of executed sessions, displaying their Unique Ids, the user who started them and when.\n"
 }
 
 func Synopsis() string {
-	return "Current session details."
+	return "Executed sessions' details."
 }
