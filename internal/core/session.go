@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"time"
 	"os/user"
+	"strings"
 
 	"github.com/brownhash/golog"
 	"github.com/gofrs/uuid"
@@ -27,6 +28,13 @@ func GenerateSession() Session {
 	}
 
 	return session
+}
+
+func (s *Session) Save(exitStatus int) error {
+	sessionMessage := fmt.Sprintf("Started by %s, at %v to run `%s` command with `%s` arguments. Exit status [%d].", s.User, s.Started, s.Command, strings.Join(s.Arguments, " "), exitStatus)
+	golog.Debug(sessionMessage)
+	
+	return nil
 }
 
 type Session struct {
