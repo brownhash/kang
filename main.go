@@ -16,14 +16,16 @@ const(
 )
 
 func main() {
-	golog.Info(fmt.Sprintf("Initiating %v", appName))
+	golog.UnsetLogFormat()
+
+	golog.Debug(fmt.Sprintf("Initiating %v", appName))
 	err := core.MaintainStructure()
 
 	if err != nil {
 		golog.Error(fmt.Errorf("Unable to initiate core structure. Error: %v", err))
 	}
 
-	golog.Success(fmt.Sprintf("%s successfully initated", appName))
+	golog.Debug(fmt.Sprintf("%s successfully initated", appName))
 
 	commandName := "--help"
 	if len(os.Args) > 1 {
