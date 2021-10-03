@@ -17,14 +17,13 @@ const(
 
 func main() {
 	golog.Info(fmt.Sprintf("Initiating %v", appName))
-	session := core.GenerateSession()
 	err := core.MaintainStructure()
 
 	if err != nil {
 		golog.Error(fmt.Errorf("Unable to initiate core structure. Error: %v", err))
 	}
 
-	golog.Success(fmt.Sprintf("%s initated for %s [ %s ]", appName, session.User, session.Id))
+	golog.Success(fmt.Sprintf("%s successfully initated", appName))
 
 	commandName := "--help"
 	if len(os.Args) > 1 {
@@ -38,20 +37,12 @@ func main() {
 
 	c := cli.NewCLI(appName, appVersion)
 	c.Args = os.Args[1:]
-
-	session.Command = commandName
-	session.Arguments = args
-	c.Commands = commands.CommandCatalog(session, commandName, args)
+	c.Commands = commands.CommandCatalog(commandName, args)
 
 	exitStatus, err := c.Run()
 	if err != nil {
 		golog.Error(err.Error())
 	}
-
-	// err = session.Save(exitStatus)
-	// if err != nil {
-	// 	golog.Error(fmt.Errorf("Unable to save session. Error: %v", err))
-	// }
 
 	os.Exit(exitStatus)
 }

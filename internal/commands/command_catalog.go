@@ -5,25 +5,11 @@ import (
 
 	"github.com/brownhash/kang/internal/commands/fetch"
 	"github.com/brownhash/kang/internal/commands/run"
-	"github.com/brownhash/kang/internal/commands/session_details"
-	"github.com/brownhash/kang/internal/core"
 	"github.com/mitchellh/cli"
 )
 
-func CommandCatalog(s core.Session, commandName string, args []string) map[string]cli.CommandFactory {
+func CommandCatalog(commandName string, args []string) map[string]cli.CommandFactory {
 	catalog := map[string]cli.CommandFactory{
-		"history": func() (cli.Command, error) {
-
-			var command cli.MockCommand
-			command.HelpText = session_details.Help()
-			command.SynopsisText = session_details.Synopsis()
-
-			if !strings.Contains(commandName, "help") {
-				command.RunResult = session_details.Run(args)
-			}
-			
-			return &command, nil
-		},
 		"fetch": func() (cli.Command, error) {
 
 			var command cli.MockCommand
