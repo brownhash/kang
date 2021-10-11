@@ -43,6 +43,12 @@ Here,
 
 1. `<terraform version>` can be like `1.0.0` / `0.14.7` / `0.15.5` etc ...
 
+Example,
+
+```shell script
+kang fetch 1.0.0
+```
+
 ### Run
 
 Pre fetch a terraform version
@@ -58,3 +64,9 @@ Here,
 2. `<terraform command>` can be like `init` / `plan` / `apply` / other terraform accepted commands
 
 3. `<terraform arguments>` can be like `-var-file=terraform.tfvars` / `-out=plan.out` / `--auto-approve` / other terraform accepted arguments
+
+Example,
+
+```shell script
+kang run 1.0.0 version
+```
