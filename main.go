@@ -12,7 +12,7 @@ import (
 
 const(
 	appName 	= "Kang"
-	appVersion 	= "1.0.0"
+	appVersion 	= "1.0.0-beta"
 )
 
 func main() {
