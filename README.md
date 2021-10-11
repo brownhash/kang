@@ -29,6 +29,10 @@ cd kang
 sudo mv bin/kang_os_arch /usr/local/bin/kang_os_arch
 ```
 
+Or,
+
+Download from the [Release Page](https://github.com/brownhash/kang/releases)!
+
 and, if you want to run a specific version of Kang, then checkout to the respective tag and then use the above provided steps.
 
 ## Usage
