@@ -23,7 +23,7 @@ Or, if your system belongs to one of these architectures -
 
 then,
 
-```shell script 
+```
 git clone https://github.com/brownhash/kang
 cd kang
 sudo mv bin/kang_os_arch /usr/local/bin/kang_os_arch
@@ -37,7 +37,7 @@ and, if you want to run a specific version of Kang, then checkout to the respect
 
 Pre fetch a terraform version
 
-```shell script 
+```
 kang fetch <terraform version>
 ```
 
@@ -47,7 +47,7 @@ Here,
 
 Example,
 
-```shell script 
+```
 kang fetch 1.0.0
 ```
 
@@ -55,7 +55,7 @@ kang fetch 1.0.0
 
 Pre fetch a terraform version
 
-```shell script 
+```
 kang run <terraform version> <terraform command> <terraform arguments>
 ```
 
@@ -69,6 +69,6 @@ Here,
 
 Example,
 
-```shell script 
+```
 kang run 1.0.0 version
 ```
