@@ -39,7 +39,7 @@ Pre fetch a terraform version
 kang fetch <terraform version>
 ```
 
-Here, 
+Here,
 
 1. `<terraform version>` can be like `1.0.0` / `0.14.7` / `0.15.5` etc ...
 
