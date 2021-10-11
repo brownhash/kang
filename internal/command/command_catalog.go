@@ -5,6 +5,8 @@ import (
 	"github.com/mitchellh/cli"
 )
 
+// initiate a command catalog
+// it keeps a catalog of all the commands
 func CommandCatalog() map[string]cli.CommandFactory {
 	catalog := map[string]cli.CommandFactory{
 		"fetch": func() (cli.Command, error) {

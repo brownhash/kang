@@ -6,6 +6,7 @@ import (
 	"runtime"
 )
 
+// global configurations
 var TerraformDownloadUrl string = "https://releases.hashicorp.com/terraform/%s/%s"
 var SetupPath string = path.Join(os.Getenv("HOME"), ".kang")
 var DefaultDirPermission os.FileMode = 755

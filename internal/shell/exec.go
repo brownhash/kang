@@ -9,6 +9,8 @@ import (
 	"github.com/brownhash/golog"
 )
 
+// bash command executioner
+// return exit code and logs the outputs
 func Exec(command string) int {
     golog.Debug(fmt.Sprintf("Executing: %s", command))
     

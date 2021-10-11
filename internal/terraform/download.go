@@ -11,6 +11,7 @@ import (
 	"github.com/brownhash/kang/internal/unzip"
 )
 
+// fetch a system & version specific terraform binary
 func Get(version, osType, osArchitecture, downloadPath string) (string, error) {
 	fileName := fmt.Sprintf("terraform_%s_%s_%s.zip", version, osType, osArchitecture)
 
