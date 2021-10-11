@@ -5,9 +5,8 @@ import (
 	"os"
 
 	"github.com/brownhash/golog"
-	"github.com/brownhash/kang/internal/command"
+	"github.com/brownhash/kang/internal/cli"
 	"github.com/brownhash/kang/internal/core"
-	"github.com/mitchellh/cli"
 )
 
 const(
@@ -27,10 +26,7 @@ func main() {
 
 	golog.Debug(fmt.Sprintf("%s successfully initated", appName))
 
-	c := cli.NewCLI(appName, appVersion)
-	c.Args = os.Args[1:]
-	c.Commands = command.CommandCatalog()
-
+	c := cli.Cli(appName, appVersion)
 	exitStatus, err := c.Run()
 	if err != nil {
 		golog.Error(err.Error())
